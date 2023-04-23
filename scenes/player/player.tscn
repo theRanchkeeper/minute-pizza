@@ -1,0 +1,49 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://assets/props/player.svg" type="Texture" id=1]
+[ext_resource path="res://scenes/player/player.gd" type="Script" id=2]
+[ext_resource path="res://assets/props/crosshair.svg" type="Texture" id=3]
+[ext_resource path="res://assets/props/player_with_pizza.svg" type="Texture" id=4]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 32.5, 32.5 )
+
+[sub_resource type="SpriteFrames" id=2]
+animations = [ {
+"frames": [ ExtResource( 1 ) ],
+"loop": true,
+"name": "no_pizza",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 4 ) ],
+"loop": true,
+"name": "yes_pizza",
+"speed": 5.0
+} ]
+
+[node name="Player" type="KinematicBody2D" groups=["player"]]
+collision_mask = 14
+script = ExtResource( 2 )
+
+[node name="RayCast2D" type="RayCast2D" parent="."]
+rotation = 1.5708
+enabled = true
+cast_to = Vector2( 0, -100 )
+collision_mask = 8
+collide_with_areas = true
+
+[node name="CrossHair" type="Sprite" parent="RayCast2D"]
+position = Vector2( -0.000350952, -98 )
+texture = ExtResource( 3 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( -0.5, 0.5 )
+shape = SubResource( 1 )
+
+[node name="PizzaHolder" type="Position2D" parent="."]
+position = Vector2( 54, 0 )
+
+[node name="Body" type="AnimatedSprite" parent="."]
+rotation = 1.5708
+frames = SubResource( 2 )
+animation = "no_pizza"

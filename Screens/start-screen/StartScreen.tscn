@@ -1,0 +1,151 @@
+[gd_scene load_steps=15 format=2]
+
+[ext_resource path="res://assets/fonts/font_data.tres" type="DynamicFontData" id=1]
+[ext_resource path="res://assets/fonts/fontx64.tres" type="DynamicFont" id=2]
+[ext_resource path="res://Screens/start-screen/Start-screen.svg" type="Texture" id=3]
+[ext_resource path="res://Screens/start-screen/StartScreen.gd" type="Script" id=4]
+[ext_resource path="res://assets/props/pizza_counter.svg" type="Texture" id=5]
+
+[sub_resource type="DynamicFont" id=1]
+size = 78
+font_data = ExtResource( 1 )
+
+[sub_resource type="DynamicFontData" id=2]
+font_path = "res://assets/fonts/Pixellari.ttf"
+
+[sub_resource type="DynamicFont" id=3]
+size = 45
+font_data = SubResource( 2 )
+
+[sub_resource type="Theme" id=4]
+Button/colors/font_color = Color( 0.286275, 0.87451, 0.0196078, 1 )
+Button/colors/font_color_disabled = Color( 0.9, 0.9, 0.9, 0.2 )
+Button/colors/font_color_focus = Color( 0.403922, 0.580392, 0.0823529, 1 )
+Button/colors/font_color_hover = Color( 0.717647, 1, 0.0196078, 1 )
+Button/colors/font_color_pressed = Color( 1, 1, 1, 1 )
+Button/constants/hseparation = 2
+Button/fonts/font = null
+Button/styles/disabled = null
+Button/styles/focus = null
+Button/styles/hover = null
+Button/styles/normal = null
+Button/styles/pressed = null
+
+[sub_resource type="StyleBoxTexture" id=5]
+
+[sub_resource type="StyleBoxTexture" id=6]
+
+[sub_resource type="StyleBoxTexture" id=7]
+
+[sub_resource type="StyleBoxTexture" id=8]
+
+[sub_resource type="StyleBoxTexture" id=9]
+
+[node name="StartScreen" type="Node2D"]
+script = ExtResource( 4 )
+
+[node name="Sprite" type="Sprite" parent="."]
+texture = ExtResource( 3 )
+centered = false
+
+[node name="Title" type="Control" parent="."]
+margin_left = 339.0
+margin_top = 111.0
+margin_right = 855.0
+margin_bottom = 205.0
+rect_rotation = -10.6674
+
+[node name="Label" type="Label" parent="Title"]
+margin_left = 18.002
+margin_top = -3.73221
+margin_right = 507.002
+margin_bottom = 75.2678
+custom_colors/font_color = Color( 0.909804, 0.196078, 0.0784314, 1 )
+custom_colors/font_outline_modulate = Color( 0, 0, 0, 1 )
+custom_fonts/font = SubResource( 1 )
+text = "Minute-PIZZA"
+
+[node name="Body" type="Control" parent="."]
+margin_left = 369.0
+margin_top = 238.0
+margin_right = 885.0
+margin_bottom = 332.0
+rect_rotation = -10.6674
+
+[node name="Label" type="Label" parent="Body"]
+margin_right = 519.0
+margin_bottom = 185.0
+custom_fonts/font = SubResource( 3 )
+text = "Are you ready to work
+under a fast-paced work
+environment ?"
+
+[node name="Actions" type="Control" parent="."]
+margin_left = 457.0
+margin_top = 419.0
+margin_right = 914.0
+margin_bottom = 572.0
+rect_rotation = -12.5277
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Actions"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="Yes" type="Button" parent="Actions/HBoxContainer"]
+margin_right = 104.0
+margin_bottom = 153.0
+theme = SubResource( 4 )
+custom_fonts/font = ExtResource( 2 )
+custom_styles/hover = SubResource( 5 )
+custom_styles/pressed = SubResource( 6 )
+custom_styles/focus = SubResource( 7 )
+custom_styles/disabled = SubResource( 8 )
+custom_styles/normal = SubResource( 9 )
+text = "Yes"
+
+[node name="No" type="Button" parent="Actions/HBoxContainer"]
+margin_left = 108.0
+margin_right = 196.0
+margin_bottom = 153.0
+theme = SubResource( 4 )
+custom_colors/font_color_focus = Color( 0.772549, 0.0156863, 0.0156863, 1 )
+custom_colors/font_color = Color( 0.894118, 0, 0, 1 )
+custom_colors/font_color_hover = Color( 1, 0.25098, 0.25098, 1 )
+custom_fonts/font = ExtResource( 2 )
+custom_styles/hover = SubResource( 5 )
+custom_styles/pressed = SubResource( 6 )
+custom_styles/focus = SubResource( 7 )
+custom_styles/disabled = SubResource( 8 )
+custom_styles/normal = SubResource( 9 )
+text = "NO"
+
+[node name="Control" type="Control" parent="."]
+margin_left = 28.0
+margin_top = 256.0
+margin_right = 336.0
+margin_bottom = 505.0
+
+[node name="Label" type="Label" parent="Control"]
+margin_left = -12.0
+margin_top = -61.0
+margin_right = 436.0
+margin_bottom = 405.0
+custom_fonts/font = ExtResource( 2 )
+text = "Use WASD
+To Move
+
+Click left to 
+pick pizza
+
+go to     to drop
+Pizza"
+
+[node name="TextureRect" type="TextureRect" parent="Control"]
+margin_left = 145.0
+margin_top = 342.0
+margin_right = 208.0
+margin_bottom = 405.0
+texture = ExtResource( 5 )
+
+[connection signal="pressed" from="Actions/HBoxContainer/Yes" to="." method="_on_Yes_pressed"]
+[connection signal="pressed" from="Actions/HBoxContainer/No" to="." method="_on_No_pressed"]
